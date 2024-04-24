@@ -1,0 +1,7 @@
+services:
+  # name
+  express-service:
+    # dockerfile file directory
+    build: .
+    ports:
+      - "3000:8080"
