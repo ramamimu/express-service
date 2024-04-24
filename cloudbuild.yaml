@@ -1,0 +1,12 @@
+steps:
+  # 1. build code into a docker image
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["build", "-t", "gcr.io/$PROJECT_ID/express-service:$COMMIT_SHA", "."]
+
+  # 2. push image been built to container registry
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "gcr.io/$PROJECT_ID/express-service:$COMMIT_SHA"]
+
+images:
+  - gcr.io/$PROJECT_ID/express-service
+# 3. renew service referred by updated container registry
