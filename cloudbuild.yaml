@@ -7,6 +7,20 @@ steps:
   - name: "gcr.io/cloud-builders/docker"
     args: ["push", "gcr.io/$PROJECT_ID/express-service:$COMMIT_SHA"]
 
+  # 3. renew service referred by updated container registry
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: gcloud
+    args:
+      [
+        "run",
+        "deploy",
+        "express-service",
+        "--image",
+        "gcr.io/$PROJECT_ID/express-service:$COMMIT_SHA",
+        "--region",
+        "asia-southeast2",
+        "--allow-unauthenticated",
+      ]
+
 images:
   - gcr.io/$PROJECT_ID/express-service
-# 3. renew service referred by updated container registry
