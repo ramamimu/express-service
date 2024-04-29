@@ -12,3 +12,7 @@ app.listen(PORT, () => {
 app.get("/ping", (request, response) => {
   response.send("pong");
 });
+
+app.get("/hello", (request, response) => {
+  response.send("hello CC-51 :'D");
+});
